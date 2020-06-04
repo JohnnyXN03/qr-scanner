@@ -11,31 +11,29 @@ class ScanScreen extends StatefulWidget {
 
 class _ScanState extends State<ScanScreen> {
   String barcode = '';
-  Future _scanQR() async {
+  Future<String> _scanQR() async {
     try {
-      var barcode = await BarcodeScanner.scan();
-      setState(() {
-        this.barcode = barcode as String;
-      });
+      String barcode = await BarcodeScanner.scan().toString();
+      setState(() => this.barcode = barcode);
     } on PlatformException catch (ex) {
       if (ex.code == BarcodeScanner.cameraAccessDenied) {
         setState(() {
           this.barcode = "Camera permission was denied";
         });
       } else {
-        setState(() {
-          this.barcode = "Unknown Error $ex";
-        });
+        setState(() => this.barcode = "Unknown Error $ex");
       }
     } on FormatException {
-      setState(() {
-        this.barcode = "You pressed the back button before scanning anything";
-      });
+      setState(() => this.barcode =
+          "You pressed the back button before scanning anything");
     } catch (ex) {
-      setState(() {
-        this.barcode = "Unknown Error $ex";
-      });
+      setState(() => this.barcode = "Unknown Error $ex");
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
