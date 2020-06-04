@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qrcode/screens/scancode.dart';
+import 'package:qrcode/screens/urllaunch.dart';
 import './screens/homepage.dart';
 import './screens/scancode.dart';
 
@@ -12,7 +13,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         '/': (context) => HomePage(),
-        '/second': (context) => ScanScreen(),
+        '/second': (context) => ScanPage(),
+        '/third': (context) => Web(null),
       },
     );
   }

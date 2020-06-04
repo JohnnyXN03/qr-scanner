@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (BuildContext context) => ScanScreen()));
+                            builder: (BuildContext context) => ScanPage()));
                   },
                   color: Colors.blue,
                   textColor: Colors.white,
