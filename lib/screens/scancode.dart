@@ -24,45 +24,58 @@ class _ScanPageState extends State<ScanPage> {
         child: Scaffold(
       appBar: AppBar(
         title: Text('Scan QR'),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.red,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Text(
-              qrcode,
-              style: TextStyle(
-                fontSize: 21,
-              ),
-            ),
-            Container(
-              alignment: Alignment.center,
-              child: Text('Tap below to browse link'),
-            ),
-            SizedBox(
-              height: 50,
-              width: 50,
-              child: RaisedButton(
-                color: Colors.blue,
-                onPressed: () {
-                  var url = qrcode;
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => Web(qrcode)));
-                },
-                child: Text('browse'),
-              ),
-            ),
-          ],
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          padding: EdgeInsets.all(15),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Text(
+                  qrcode,
+                  style: TextStyle(
+                    fontSize: 21,
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  child: Text('Tap below to browse link'),
+                ),
+                SizedBox(
+                  height: 25,
+                  width: MediaQuery.of(context).size.width,
+                ),
+                Container(
+                  padding: EdgeInsets.all(15),
+                  child: RaisedButton(
+                    elevation: 6,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    color: Colors.cyan,
+                    onPressed: () {
+                      var url = qrcode;
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => Web(url)));
+                    },
+                    child: Text(
+                      'browse',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ]),
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _scan,
         label: Text('Scan'),
-        backgroundColor: Colors.pink,
+        backgroundColor: Colors.red,
         isExtended: true,
         icon: Icon(Icons.camera),
       ),

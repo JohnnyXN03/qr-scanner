@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
+void main() => runApp(Web(null));
+
 class Web extends StatelessWidget {
   final String urlnew;
   Web(this.urlnew);
 
-  @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
