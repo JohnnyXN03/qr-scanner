@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:qrcode/screens/generate.dart';
 import 'package:qrcode/screens/scancode.dart';
 
 class HomePage extends StatelessWidget {
@@ -57,7 +58,12 @@ class HomePage extends StatelessWidget {
               Padding(
                   child: RaisedButton(
                     elevation: 6,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => GenerateScreen()));
+                    },
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     color: Colors.cyan,

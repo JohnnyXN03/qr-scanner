@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qrcode/screens/generate.dart';
 import 'package:qrcode/screens/scancode.dart';
 import 'package:qrcode/screens/urllaunch.dart';
 import './screens/homepage.dart';
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => HomePage(),
         '/second': (context) => ScanPage(),
         '/third': (context) => Web(null),
+        '/final': (context) => GenerateScreen(),
       },
     );
   }
