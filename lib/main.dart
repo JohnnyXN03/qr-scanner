@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => HomePage(),
         '/second': (context) => ScanPage(),
         '/third': (context) => Web(null),
-        '/final': (context) => GenerateScreen(),
+        '/final': (context) => GeneratePage(),
       },
     );
   }
