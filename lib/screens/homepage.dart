@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:qrcode/screens/generate.dart';
+import 'package:qrcode/screens/saved.dart';
 import 'package:qrcode/screens/scancode.dart';
 
 class HomePage extends StatelessWidget {
@@ -12,7 +13,12 @@ class HomePage extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.history),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => Saved()));
+            },
             color: Colors.black,
           )
         ],

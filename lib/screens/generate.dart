@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'dart:ui';
 import 'package:flutter/rendering.dart';
+import 'package:qrcode/screens/saved.dart';
 
 class GeneratePage extends StatefulWidget {
   @override
@@ -17,8 +18,29 @@ class GeneratePageState extends State<GeneratePage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.red,
-          title: Text('QR Generator'),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.history),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => Saved()));
+              },
+              color: Colors.white,
+            )
+          ],
+          elevation: 0,
+          centerTitle: true,
+          backgroundColor: Colors.black,
+          title: Text(
+            'QR Generator',
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'OpenSans',
+              fontSize: 21,
+            ),
+          ),
         ),
         body: Container(
           height: MediaQuery.of(context).size.height,
@@ -37,7 +59,7 @@ class GeneratePageState extends State<GeneratePage> {
                   children: <Widget>[
                     Text(
                       "Generate Qr code",
-                      style: TextStyle(fontSize: 20.0),
+                      style: TextStyle(fontSize: 17, fontFamily: 'OpenSans'),
                     ),
                     Container(
                       child: TextField(
@@ -55,19 +77,20 @@ class GeneratePageState extends State<GeneratePage> {
                         children: <Widget>[
                           RaisedButton(
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20)),
+                                  borderRadius: BorderRadius.circular(10)),
                               onPressed: () {},
                               child: Text(
                                 "Share",
                                 style: TextStyle(
                                     color: Colors.white,
+                                    fontFamily: 'OpenSans',
                                     fontWeight: FontWeight.bold),
                               ),
                               elevation: 2,
-                              color: Colors.blue),
+                              color: Color(0xFF235789)),
                           RaisedButton(
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20)),
+                                  borderRadius: BorderRadius.circular(10)),
                               onPressed: () async {
                                 if (qrdataFeed.text.isEmpty) {
                                   setState(() {
@@ -82,11 +105,12 @@ class GeneratePageState extends State<GeneratePage> {
                               child: Text(
                                 "Generate and save",
                                 style: TextStyle(
+                                    fontFamily: 'openSans',
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),
                               elevation: 2,
-                              color: Colors.red),
+                              color: Color(0xFFE84118)),
                         ],
                       ),
                     ),
