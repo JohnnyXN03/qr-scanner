@@ -1,8 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'dart:ui';
+import 'dart:async';
+import 'dart:convert';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
+
 import 'package:flutter/rendering.dart';
 import 'package:qrcode/screens/saved.dart';
+//import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 class GeneratePage extends StatefulWidget {
   @override
@@ -10,9 +17,28 @@ class GeneratePage extends StatefulWidget {
 }
 
 class GeneratePageState extends State<GeneratePage> {
+  Future<Uint8List> _capturePng() async {
+    try {
+      print('inside');
+      RenderRepaintBoundary boundary =
+          _globalKey.currentContext.findRenderObject();
+      ui.Image image = await boundary.toImage(pixelRatio: 3.0);
+      ByteData byteData =
+          await image.toByteData(format: ui.ImageByteFormat.png);
+      var pngBytes = byteData.buffer.asUint8List();
+      var bs64 = base64Encode(pngBytes);
+      print(pngBytes);
+      print(bs64);
+      setState(() {});
+      return pngBytes;
+    } catch (e) {
+      print(e);
+    }
+  }
+
   TextEditingController qrdataFeed = TextEditingController();
   String qrData = "";
-
+  GlobalKey _globalKey = new GlobalKey();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -50,10 +76,13 @@ class GeneratePageState extends State<GeneratePage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                QrImage(
-                  padding: EdgeInsets.all(80),
-                  data: qrData,
-                  version: QrVersions.auto,
+                RepaintBoundary(
+                  key: _globalKey,
+                  child: QrImage(
+                    padding: EdgeInsets.all(80),
+                    data: qrData,
+                    version: QrVersions.auto,
+                  ),
                 ),
                 Column(
                   children: <Widget>[
@@ -78,7 +107,7 @@ class GeneratePageState extends State<GeneratePage> {
                           RaisedButton(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10)),
-                              onPressed: () {},
+                              onPressed: _capturePng,
                               child: Text(
                                 "Share",
                                 style: TextStyle(
